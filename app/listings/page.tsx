@@ -16,6 +16,7 @@ const ListingsPage = () => {
   const {
     listings,
     allBooks,
+    allAuthors,
     page,
     setPage,
     totalPages,
@@ -28,7 +29,6 @@ const ListingsPage = () => {
   const { showForm, setShowForm, formProps, startEdit, handleSubmit } =
     useListingForm(refresh);
   const { favoriteIds, toggleFavorite } = useFavorites(isLoggedIn);
-
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center p-6">
       <header className="flex justify-between items-center w-full max-w-3xl mb-6">
@@ -47,6 +47,7 @@ const ListingsPage = () => {
         <ListingForm
           {...formProps}
           allBooks={allBooks}
+          allAuthors={allAuthors || []}
           handleSubmit={handleSubmit}
         />
       )}

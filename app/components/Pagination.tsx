@@ -15,15 +15,6 @@ export const Pagination: React.FC<PaginationProps> = (props) => {
   const pages = getPaginationRange(currentPage, totalPages, range);
 
   const lastPageInRange = pages[pages.length - 1];
-  // let start = Math.max(0, currentPage - Math.floor(range / 2));
-  // let end = start + range;
-
-  // if (end > totalPages) {
-  //   end = totalPages;
-  //   start = Math.max(0, end - range);
-  // }
-
-  // const pages = Array.from({ length: end - start }, (_, i) => start + i);
 
   return (
     <div className="flex justify-center items-center space-x-2 mt-10 mb-10 w-full max-w-3xl">

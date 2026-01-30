@@ -1,7 +1,12 @@
 import { Book } from "../types/listing";
 
 export const isBookValid = (book: Book): boolean => {
-  return !!(book.title.trim() && book.author.trim() && book.publisher.trim());
+  return !!(
+    book.title.trim() &&
+    book.authors &&
+    book.authors.length > 0 &&
+    book.publisher.trim()
+  );
 };
 
 export const isPriceValid = (price: number): boolean => {

@@ -5,10 +5,16 @@ export enum BookCondition {
   USED = "USED",
 }
 
+export interface Author {
+  id: number | null;
+  firstname: string;
+  lastname: string;
+}
+
 export interface Book {
   id: number;
   title: string;
-  author: string;
+  authors: Author[];
   publisher: string;
 }
 

@@ -45,13 +45,16 @@ const ListingItemComponent: React.FC<ListingItemProps> = (props) => {
                   {b.title}
                 </h3>
                 <p className="text-gray-600 text-xs">
-                  {b.author} – {b.publisher}
+                  {b.authors
+                    .map((a) => `${a.firstname} ${a.lastname}`)
+                    .join(", ")}{" "}
+                  – {b.publisher}
                 </p>
               </div>
             ))}
           </div>
         ) : (
-          <p className="text-gray-400">Bez informacija o knjigama</p>
+          <p className="text-gray-400">No information about the book</p>
         )}
         <p className="text-gray-500 mt-1 italic text-sm line-clamp-2">
           {listing.description}

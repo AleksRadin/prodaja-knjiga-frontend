@@ -48,10 +48,14 @@ export const useListingForm = (onSuccess: () => void) => {
         },
         body: JSON.stringify({
           books: selectedBooks.map((b) => ({
-            id: b.id > 0 ? b.id : null,
+            id: Number(b.id) > 0 ? Number(b.id) : null,
             title: b.title,
-            author: b.author,
             publisher: b.publisher,
+            authors: b.authors.map((a) => ({
+              id: a.id && Number(a.id) > 0 ? Number(a.id) : null,
+              firstname: a.firstname,
+              lastname: a.lastname,
+            })),
           })),
           price,
           condition,

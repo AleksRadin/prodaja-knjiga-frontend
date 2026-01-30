@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { Listing, Book } from "../types/listing";
+import { Listing, Book, Author } from "../types/listing";
 import { PaginatedResponse } from "../types/api";
 import toast from "react-hot-toast";
 
@@ -10,6 +10,7 @@ export const useListings = (searchTerm: string, favoritesOnly: boolean) => {
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [allAuthors, setAllAuthors] = useState<Author[]>([]);
 
   const fetchListings = useCallback(async () => {
     setLoading(true);
@@ -42,6 +43,18 @@ export const useListings = (searchTerm: string, favoritesOnly: boolean) => {
       setLoading(false);
     }
   }, [page, searchTerm, favoritesOnly]);
+
+  const fetchAllAuthors = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/author");
+      if (response.ok) {
+        const data = await response.json();
+        setAllAuthors(data);
+      }
+    } catch (err) {
+      console.error("Error fetching authors:", err);
+    }
+  };
 
   const fetchAllBooks = async () => {
     try {
@@ -97,11 +110,13 @@ export const useListings = (searchTerm: string, favoritesOnly: boolean) => {
 
   useEffect(() => {
     fetchAllBooks();
+    fetchAllAuthors();
   }, []);
 
   return {
     listings,
     allBooks,
+    allAuthors,
     page,
     setPage,
     totalPages,

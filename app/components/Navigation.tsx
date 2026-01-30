@@ -54,7 +54,6 @@ export default function Navigation() {
       <div className="ml-auto flex items-center gap-3">
         {user ? (
           <div className="relative">
-            {/* Klik na ime/ikonu otvara meni */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="flex items-center gap-2 font-medium text-gray-800 hover:text-blue-600 transition outline-none"
@@ -64,7 +63,6 @@ export default function Navigation() {
               <span className="text-xs">▼</span>
             </button>
 
-            {/* Dropdown Meni */}
             {isMenuOpen && (
               <div
                 className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-xl shadow-lg py-2 z-50 text-black"
